@@ -1,6 +1,6 @@
 # Vacation Plan
 
-Vacation Planner:
+Vacation Planner: Sample Project
 
 To plan vacations and change their status from active to completed or cancel the vacation.
 
