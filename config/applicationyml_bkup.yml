@@ -1,0 +1,14 @@
+
+development:
+  SECRET_KEY_BASE:
+  db_username:
+  db_password:
+  db_host:
+test:
+  SECRET_KEY_BASE:
+  db_username:
+  db_password:
+  db_host:
+
+production:
+  SECRET_KEY_BASE:
