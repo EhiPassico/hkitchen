@@ -48,6 +48,7 @@
     <div class="col-md-offset-2 col-md-9 ">
       <table class="table table-bordered table-striped table-hover">
         <tr>
+          <th class="text-center" width="5%">S.No</th>
           <th width="20%" class="text-center"> Vacation Date</th>
           <th>Description</th>
           <th width="10%" class="text-center" ng-if="report_type == 1">Edit</th>
@@ -57,10 +58,11 @@
         </tr>
 
         <tr ng-repeat="v in vacations | orderBy: 'vacation_date'">
+          <td class="text-center">{{$index + 1}}</td>
           <td class="text-center">{{v.vacation_date | date}}</td>
           <td>{{v.description}}</td>
-          <td class="text-center">
-            <button class="btn btn-default btn-sm" ng-click="edit_record(v)" ng-if="report_type == 1">Edit</button>
+          <td class="text-center" ng-if="report_type == 1">
+            <button class="btn btn-default btn-sm" ng-click="edit_record(v)" >Edit</button>
           </td>
           <td class="text-center" ng-if="report_type != 2">
             <button class="btn btn-sm btn-success" ng-click="update_vacation_status(2,v.id)">Complete</button>

@@ -34,6 +34,21 @@ class VacationsController < ApplicationController
     end
   end
 
+  def update
+    @vacation = Vacation.find_by(id: params[:vacation][:id])
+    if @vacation
+      @vacation.description = params[:vacation][:description]
+      @vacation.vacation_date = params[:vacation][:vacation_date]
+      if @vacation.save
+        render json: {msg: "status updated", status: "success", vacation: @vacation}
+      else
+        render json: {msg: "status not updated", status: "failed"}
+      end
+    else
+      render json: {msg: "vacation not found", status: "failed"}
+    end
+  end
+
   private
 
   def vacation_params

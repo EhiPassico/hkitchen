@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get 'get_vacations_for_status', on: :collection
     post 'create', on: :collection
     post 'update_status', on: :collection
+    post 'update', on: :collection
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

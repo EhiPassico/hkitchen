@@ -45,8 +45,6 @@ myapp.controller('vacation_controller', ["$scope", "$filter", "$resource", funct
 
 
     $scope.save_vacation = function () {
-        // alert("bingo")
-
         if ($scope.vac_description != null) {
             $scope.ajaxCall('vacations').postfx({
                 action: 'create',
@@ -65,7 +63,6 @@ myapp.controller('vacation_controller', ["$scope", "$filter", "$resource", funct
 
 
     $scope.update_vacation_status = function (vacation_status, vacation_id) {
-        // alert("bingo")
         $scope.ajaxCall('vacations').postfx({
             action: 'update_status',
             vacation_id: vacation_id,
@@ -79,7 +76,26 @@ myapp.controller('vacation_controller', ["$scope", "$filter", "$resource", funct
         })
     }
 
+
+    $scope.update_vacation = function (vacation) {
+        $scope.ajaxCall('vacations').postfx({
+            action: 'update',
+            vacation: {
+                id: $scope.vac_id,
+                vacation_date: $scope.vac_date,
+                description: $scope.vac_description
+            }
+        }, function (result) {
+            if (result.status == 'success') {
+                var found = $filter('filter')($scope.vacations, {id: $scope.vac_id}, true);
+                $scope.vacations[$scope.vacations.indexOf(found[0])] = result.vacation
+                $scope.reset_values();
+            }
+        })
+    }
+
     $scope.edit_record = function (vacation) {
+        $scope.vac_id = vacation.id
         $scope.vac_date = new Date(vacation.vacation_date)
         $scope.vac_description = vacation.description
         $scope.show_update_button = true
