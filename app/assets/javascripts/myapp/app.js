@@ -1,7 +1,9 @@
 // myapp = angular.module('myapp').run(["$rootScope", function ($rootScope) {
 
 
-myapp = angular.module('myapp', ['ngResource', 'ngRoute'])
+myapp = angular.module('myapp', ['ngResource', 'ngRoute']).run(["$rootScope", function ($rootScope) {
+    $rootScope.vacation_search = ""
+}])
 
 
 // var myApp = angular.module('myApp', [])
