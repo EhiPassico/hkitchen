@@ -49,6 +49,14 @@ class VacationsController < ApplicationController
     end
   end
 
+
+  def reset
+    Vacation.delete_all
+    flash[:danger] = "All Vacations Cleared"
+    redirect_to root_path
+
+  end
+
   private
 
   def vacation_params

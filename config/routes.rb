@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root 'vacations#index'
 
+  get 'reset' => 'vacations#reset'
+
   resources :vacations do
     get 'get_vacations_for_status', on: :collection
     post 'create', on: :collection

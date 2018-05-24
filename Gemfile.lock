@@ -116,7 +116,6 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     mysql2 (0.4.10)
-    mysql2 (0.4.10-x64-mingw32)
     nenv (0.3.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
