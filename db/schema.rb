@@ -11,16 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180524155052) do
+ActiveRecord::Schema.define(version: 20180524171525) do
 
   create_table "vacations", force: :cascade do |t|
-    t.string   "description", limit: 255
-    t.integer  "status",      limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "description",   limit: 255
+    t.integer  "status",        limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "vacation_date", limit: 255
   end
 
   add_index "vacations", ["description"], name: "index_vacations_on_description", using: :btree
   add_index "vacations", ["status"], name: "index_vacations_on_status", using: :btree
+  add_index "vacations", ["vacation_date"], name: "index_vacations_on_vacation_date", using: :btree
 
 end
