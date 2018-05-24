@@ -23,10 +23,7 @@
 
 
 //= require ./myapp/app
-//= require_tree ./myapp/directives
 //= require_tree ./myapp/controllers
-//= require_tree ./myapp/services
-//= require_tree ./myapp/views
 
 
 //= require bootstrap.min
