@@ -52,7 +52,7 @@ class VacationsController < ApplicationController
 
   def reset
     Vacation.delete_all
-    flash[:danger] = "All Vacations Cleared"
+    flash[:success] = "All Vacations Cleared"
     redirect_to root_path
 
   end
