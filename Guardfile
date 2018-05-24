@@ -24,7 +24,7 @@
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
-guard :rspec, cmd: "bin/rspec" do
+guard :rspec, cmd: "bundle exec bin/rspec" do
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
 
@@ -40,11 +40,6 @@ guard :rspec, cmd: "bin/rspec" do
   ruby = dsl.ruby
   dsl.watch_spec_files_for(ruby.lib_files)
 
-  watch(%r{^app/controllers/(.+)_(controller)\.rb$}) { "spec/features" }
-  watch(%r{^app/models/(.+)\.rb$}) { "spec/features" }
-  watch(rails.routes) { "spec" } #{ "#{rspec.spec_dir}/routing" }
-  watch(rails.view_dirs) { "spec/features" } #{ |m| rspec.spec.call("features/#{m[1]}") }
-  watch(rails.view_dirs) { "spec/models" }
 
   # Rails files
   rails = dsl.rails(view_extensions: %w(erb haml slim))
