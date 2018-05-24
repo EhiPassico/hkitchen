@@ -19,7 +19,7 @@ myapp.controller('vacation_controller', ["$scope", "$filter", "$resource", funct
 
     $scope.$watch("report_type", function () {
         if ($scope.report_type == '1') {
-            $scope.report_name = "Active"
+            $scope.report_name = "Planned"
         } else if ($scope.report_type == '2') {
             $scope.report_name = "Completed"
         } else if ($scope.report_type == '3') {

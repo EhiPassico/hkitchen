@@ -1,13 +1,13 @@
 <div ng-controller="vacation_controller" ng-cloak>
 
   <div class="row">
-    <div class="col-md-8 col-md-offset-1"><h3 class="h3 text-center bold">Vacation Planner</h3></div>
+    <div class="col-md-8 col-md-offset-1"><h3 class="h3 text-center bold">{{report_name}} Vacations</h3></div>
     <div class="col-md-2 col-md-offset-1">
       <br/>
       <div class="form-group">
         <!--<label>Report:</label>-->
         <select ng-model="report_type" ng-init="report_type = '1'" class="form-control pull-right">
-          <option value="1">Active</option>
+          <option value="1">Planned</option>
           <option value="2">Completed</option>
           <option value="3">Cancelled</option>
         </select>
@@ -54,7 +54,7 @@
           <th width="5%" class="text-center" ng-if="report_type == 1">Edit</th>
           <th width="10%" class="text-center" ng-if="report_type != 2">Complete</th>
           <th width="10%" class="text-center" ng-if="report_type != 3">Cancel</th>
-          <th width="10%" class="text-center" ng-if="report_type != 1">Active</th>
+          <th width="10%" class="text-center" ng-if="report_type != 1">Plan</th>
         </tr>
 
         <tr ng-repeat="v in vacations |filter:  vacation_search | orderBy: 'vacation_date'">
@@ -71,7 +71,7 @@
             <button class="btn btn-sm btn-danger" ng-click="update_vacation_status(3,v.id)">Cancel</button>
           </td>
           <td class="text-center" ng-if="report_type != 1">
-            <button class="btn btn-sm btn-info" ng-click="update_vacation_status(1,v.id)">Active</button>
+            <button class="btn btn-sm btn-info" ng-click="update_vacation_status(1,v.id)">Plan</button>
           </td>
 
         </tr>
