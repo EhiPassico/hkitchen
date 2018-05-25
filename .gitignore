@@ -14,3 +14,5 @@
 
 # Ignore application configuration
 /config/application.yml
+db/test.sqlite3
+db/development.sqlite3

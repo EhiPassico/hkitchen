@@ -18,6 +18,7 @@ myapp.controller('vacation_controller', ["$scope", "$filter", "$resource", funct
 
 
     $scope.$watch("report_type", function () {
+        $scope.vacations = []
         if ($scope.report_type == '1') {
             $scope.report_name = "Planned"
         } else if ($scope.report_type == '2') {
