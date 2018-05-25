@@ -22,15 +22,15 @@ class VacationsController < ApplicationController
 
   def update_status
     @vacation = Vacation.find_by(id: params[:vacation_id].to_i)
-    if @vacation && (@vacation.status != params[:vacation_id].to_i)
+    if @vacation && (@vacation.status != params[:status].to_i)
       @vacation.status = params[:status].to_i
       if @vacation.save
         render json: {msg: "status updated", status: "success", vacation: @vacation}
       else
-        render json: {msg: "status not updated", status: "failed"}
+        render json: {msg: "status not updated", status: "fail"}
       end
     else
-      render json: {msg: "vacation not found", status: "failed"}
+      render json: {msg: "vacation not found", status: "fail"}
     end
   end
 
@@ -42,10 +42,10 @@ class VacationsController < ApplicationController
       if @vacation.save
         render json: {msg: "status updated", status: "success", vacation: @vacation}
       else
-        render json: {msg: "status not updated", status: "failed"}
+        render json: {msg: "status not updated", status: "fail"}
       end
     else
-      render json: {msg: "vacation not found", status: "failed"}
+      render json: {msg: "vacation not found", status: "fail"}
     end
   end
 
