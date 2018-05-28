@@ -3,6 +3,9 @@
 
 myapp = angular.module('myapp', ['ngResource', 'ngRoute']).run(["$rootScope", function ($rootScope) {
     $rootScope.vacation_search = ""
+    $rootScope.reload_page = function(){
+        location.reload();
+    }
 }])
 
 

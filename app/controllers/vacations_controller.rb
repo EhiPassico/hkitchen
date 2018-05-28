@@ -54,7 +54,13 @@ class VacationsController < ApplicationController
     Vacation.delete_all
     flash[:success] = "All Vacations Cleared"
     redirect_to root_path
+  end
 
+  def set_defaults
+    Vacation.delete_all
+    Vacation.set_default_values
+    flash[:success] = "Default values loaded"
+    redirect_to root_path
   end
 
   private

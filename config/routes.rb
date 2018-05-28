@@ -1,16 +1,18 @@
 Rails.application.routes.draw do
 
-  get 'welcome' => 'welcome#index'
 
   root 'vacations#index'
 
   get 'reset' => 'vacations#reset'
 
   resources :vacations do
-    get 'get_vacations_for_status', on: :collection
     post 'create', on: :collection
-    post 'update_status', on: :collection
     post 'update', on: :collection
+    post 'update_status', on: :collection
+
+    get 'get_vacations_for_status', on: :collection
+    get 'reset', on: :collection
+    get 'set_defaults', on: :collection
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -6,11 +6,11 @@ myapp.controller('vacation_controller', ["$scope", "$filter", "$resource", funct
 
     $scope.ajaxCall = function (route) {
         res = $resource('/' + route + '/:id/:action.json', {id: '@id', action: '@action'}, {
-            updatefx: {method: 'PUT'},
-            delete: {method: 'DELETE'},
-            postfx: {method: 'POST'},
-            patch: {method: 'PATCH'},
-            getfx: {method: 'GET'}
+            _update: {method: 'PUT'},
+            _delete: {method: '_delete'},
+            _post: {method: 'POST'},
+            _patch: {method: '_patch'},
+            _get: {method: 'GET'}
         })
 
         return res
@@ -47,7 +47,7 @@ myapp.controller('vacation_controller', ["$scope", "$filter", "$resource", funct
 
     $scope.save_vacation = function () {
         if ($scope.vac_description != null) {
-            $scope.ajaxCall('vacations').postfx({
+            $scope.ajaxCall('vacations')._post({
                 action: 'create',
                 vacation: {
                     vacation_date: $scope.vac_date,
@@ -64,7 +64,7 @@ myapp.controller('vacation_controller', ["$scope", "$filter", "$resource", funct
 
 
     $scope.update_vacation_status = function (vacation_status, vacation_id) {
-        $scope.ajaxCall('vacations').postfx({
+        $scope.ajaxCall('vacations')._post({
             action: 'update_status',
             vacation_id: vacation_id,
             status: vacation_status
@@ -79,7 +79,7 @@ myapp.controller('vacation_controller', ["$scope", "$filter", "$resource", funct
 
 
     $scope.update_vacation = function (vacation) {
-        $scope.ajaxCall('vacations').postfx({
+        $scope.ajaxCall('vacations')._post({
             action: 'update',
             vacation: {
                 id: $scope.vac_id,
@@ -111,4 +111,6 @@ myapp.controller('vacation_controller', ["$scope", "$filter", "$resource", funct
         $scope.vac_description = null
         $scope.show_update_button = false
     }
+
+
 }])

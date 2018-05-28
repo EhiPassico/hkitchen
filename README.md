@@ -9,8 +9,5 @@ www.tinyurl.com/vplanner
 
 
 
-
-
-
-
--Rails, Ruby, Angularjs, Bootstrap, shoulda-matchers, RSpec, 
+Developed using:
+-Rails, Ruby, Angularjs, Bootstrap, shoulda-matchers, RSpec
