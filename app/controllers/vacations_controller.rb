@@ -21,9 +21,9 @@ class VacationsController < ApplicationController
   end
 
   def update_status
-    @vacation = Vacation.find_by(id: params[:vacation_id].to_i)
-    if @vacation && (@vacation.status != params[:status].to_i)
-      @vacation.status = params[:status].to_i
+    @vacation = Vacation.find_by("id = ?", params[:vacation_id].to_i)
+
+    if @vacation && (@vacation.status != params[:status].to_i) && is_valid_status?(params[:status])
       if @vacation.save
         render json: {msg: "status updated", status: "success", vacation: @vacation}
       else
@@ -35,11 +35,10 @@ class VacationsController < ApplicationController
   end
 
   def update
-    @vacation = Vacation.find_by(id: params[:vacation][:id])
+    @vacation = Vacation.find_by("id = ?", params[:vacation][:id])
     if @vacation
-      @vacation.description = params[:vacation][:description]
-      @vacation.vacation_date = params[:vacation][:vacation_date]
-      if @vacation.save
+
+      if @vacation.update_attributes(vacation_params)
         render json: {msg: "status updated", status: "success", vacation: @vacation}
       else
         render json: {msg: "status not updated", status: "fail"}
@@ -64,6 +63,15 @@ class VacationsController < ApplicationController
   end
 
   private
+
+  def is_valid_status?(status)
+    if status == 1 || status == 2 || status == 3
+      @vacation.status = status
+      return true
+    else
+      return false
+    end
+  end
 
   def vacation_params
     params.require(:vacation).permit(:vacation_date, :description)
