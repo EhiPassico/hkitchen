@@ -5,7 +5,7 @@ class VacationsController < ApplicationController
   end
 
   def get_vacations_for_status
-    @vacations = Vacation.where("status = ?", params[:status].to_i).order(:vacation_date)
+    @vacations = Vacation.where("status = ? and user_id = ?", params[:status].to_i, current_user.id).order(:vacation_date)
     render json: {msg: "success", vacations: @vacations}
   end
 
@@ -13,6 +13,7 @@ class VacationsController < ApplicationController
   def create
     @vacation = Vacation.new(vacation_params)
     @vacation.status = 1
+    @vacation.user_id = current_user.id
 
     if @vacation.save
       render json: {status: 'success', message: "vacation saved", vacation: @vacation}
@@ -23,7 +24,7 @@ class VacationsController < ApplicationController
   end
 
   def update_status
-    @vacation = Vacation.find_by("id = ?", params[:vacation_id].to_i)
+    @vacation = Vacation.find_by("id = ? and user_id = ?", params[:vacation_id].to_i, current_user.id)
 
     if @vacation && (@vacation.status != params[:status].to_i) && is_valid_status?(params[:status])
       if @vacation.save
@@ -37,7 +38,7 @@ class VacationsController < ApplicationController
   end
 
   def update
-    @vacation = Vacation.find_by("id = ?", params[:vacation][:id])
+    @vacation = Vacation.find_by("id = ? and user_id = ?", params[:vacation][:id], current_user.id)
     if @vacation
 
       if @vacation.update_attributes(vacation_params)
@@ -52,19 +53,23 @@ class VacationsController < ApplicationController
 
 
   def reset
-    Vacation.delete_all
+    delete_vacations_for_user
     flash[:success] = "All Vacations Cleared"
     redirect_to root_path
   end
 
   def set_defaults
-    Vacation.delete_all
-    Vacation.set_default_values
+    delete_vacations_for_user
+    Vacation.set_default_values(current_user.id)
     flash[:success] = "Default values loaded"
     redirect_to root_path
   end
 
   private
+
+  def delete_vacations_for_user
+    Vacation.delete_all "user_id = #{current_user.id}"
+  end
 
   def is_valid_status?(status)
     if status == 1 || status == 2 || status == 3
