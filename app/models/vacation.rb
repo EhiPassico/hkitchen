@@ -4,17 +4,17 @@ class Vacation < ActiveRecord::Base
 
   def self.set_default_values(user_id)
 
-    Vacation.create(description: 'Vancouver', status: 1, vacation_date: '27-05-208', user_id: user_id)
-    Vacation.create(description: 'Montreal', status: 1, vacation_date: '29-05-208', user_id: user_id)
-    Vacation.create(description: 'African Lion Safari', status: 1, vacation_date: '01-06-208', user_id: user_id)
-    Vacation.create(description: 'Niagara', status: 1, vacation_date: '02-06-208', user_id: user_id)
-    Vacation.create(description: 'Chicago', status: 1, vacation_date: '09-06-208', user_id: user_id)
+    Vacation.create(description: 'Vancouver', status: 1, vacation_date: '2018-05-27', user_id: user_id)
+    Vacation.create(description: 'Montreal', status: 1, vacation_date: '2018-05-29', user_id: user_id)
+    Vacation.create(description: 'African Lion Safari', status: 1, vacation_date: '2018-06-01', user_id: user_id)
+    Vacation.create(description: 'Niagara', status: 1, vacation_date: '2018-06-02', user_id: user_id)
+    Vacation.create(description: 'Chicago', status: 1, vacation_date: '2018-06-09', user_id: user_id)
 
-    Vacation.create(description: 'Toronto', status: 2, vacation_date: '25-05-208', user_id: user_id)
-    Vacation.create(description: 'Milton', status: 2, vacation_date: '26-05-208', user_id: user_id)
+    Vacation.create(description: 'Toronto', status: 2, vacation_date: '2018-05-25', user_id: user_id)
+    Vacation.create(description: 'Milton', status: 2, vacation_date: '2018-05-26', user_id: user_id)
 
 
-    Vacation.create(description: 'Seattle', status: 3, vacation_date: '23-05-208', user_id: user_id)
-    Vacation.create(description: 'New York', status: 3, vacation_date: '24-05-208', user_id: user_id)
+    Vacation.create(description: 'Seattle', status: 3, vacation_date: '2018-05-23', user_id: user_id)
+    Vacation.create(description: 'New York', status: 3, vacation_date: '2018-05-24', user_id: user_id)
   end
 end
