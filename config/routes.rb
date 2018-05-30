@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
 
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  devise_for :users
   root 'vacations#index'
-
+  # root 'home#index'
   get 'reset' => 'vacations#reset'
 
-  resources :vacations do
+  resources :vacations, only:[:index] do
     post 'create', on: :collection
     post 'update', on: :collection
     post 'update_status', on: :collection
-
+    get 'index', on: :collection
     get 'get_vacations_for_status', on: :collection
     get 'reset', on: :collection
     get 'set_defaults', on: :collection
@@ -68,4 +70,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  get '*path' => redirect('/')
 end

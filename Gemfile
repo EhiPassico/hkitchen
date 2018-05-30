@@ -15,6 +15,9 @@ gem 'puma', '3.6.0'
 gem 'angular-rails-templates', '1.0.2'
 gem 'bower-rails', '0.11.0'
 gem 'seed_dump', '3.2.4'
+gem 'devise','4.4.3'
+gem 'rails_admin'
+
 ################################
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
